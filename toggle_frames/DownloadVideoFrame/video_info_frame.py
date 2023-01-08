@@ -74,20 +74,11 @@ class VideoInfoFrame():
             config_text = f"{str(data_found['size'])} {data_found['size_type']}"
             self.title.config(text=data_found['title'])
             self.duration.config(text=data_found['duration'])
-            self.filesize.config(text=config_text)
+            self.filesize.configure(text=config_text)
             self.views.config(text=str(data_found['views']))
 
         except:
             self.title.config(text="Error!")
             self.duration.config(text="Error!")
-            self.filesize.config(text="Error!")
+            self.filesize.configure(text="Error!")
             self.views.config(text="Error!")
-
-
-
-
-
-
-
-
-        
