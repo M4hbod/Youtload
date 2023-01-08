@@ -35,13 +35,13 @@ class SettingsFrame:
 
         # Path Label
 
-        self.path_label = ctk.CTkLabel(self.options_frame, text="Path : ", text_font=font, width=50)
+        self.path_label = ctk.CTkLabel(self.options_frame, text="Path : ", font=font, width=50)
         self.path_label.grid(row=0, column=0)
 
 
         # Path Entry -> path for downloading videos
 
-        self.path_entry = ctk.CTkEntry(self.options_frame, text_font=font, width=350)
+        self.path_entry = ctk.CTkEntry(self.options_frame, font=font, width=350)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
         self.path_entry.insert(0, self.database['path'])
         
@@ -49,7 +49,7 @@ class SettingsFrame:
 
         # Browse Button -> for choosing a path
 
-        self.path_button = ctk.CTkButton(self.options_frame, text="Browse", text_font=font, width=40, command=self.setPath)
+        self.path_button = ctk.CTkButton(self.options_frame, text="Browse", font=font, width=40, command=self.setPath)
         self.path_button.grid(row=0, column=2, padx=5, pady=5)
 
 

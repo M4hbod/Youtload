@@ -24,13 +24,13 @@ class DownloadProgressFrame:
 
         #download label -> for showing 'Downloading...'
 
-        self.download_label = ctk.CTkLabel(self.main_frame, text="Downloading...", text_font=font)
+        self.download_label = ctk.CTkLabel(self.main_frame, text="Downloading...", font=font)
         self.download_label.grid(row=0, column=0, padx=10, pady=10, sticky="W")
 
 
         #dwonload percentage label -> for showing how much video is downloaded
 
-        self.downloaded_percentage_label = ctk.CTkLabel(self.main_frame, text="--", text_font=font)
+        self.downloaded_percentage_label = ctk.CTkLabel(self.main_frame, text="--", font=font)
         self.downloaded_percentage_label.grid(row=0, column=1, padx=10, pady=10, sticky="W")
 
 

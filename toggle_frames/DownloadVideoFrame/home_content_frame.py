@@ -70,21 +70,21 @@ class ContentFrame:
         #============ Url Entry ============
 
         self.entry_value = tk.StringVar(self.main_frame)
-        self.url_entry = ctk.CTkEntry(self.video_url_frame, width=250, placeholder_text="Video Url...", textvariable = self.entry_value, text_font=font)
+        self.url_entry = ctk.CTkEntry(self.video_url_frame, width=250, placeholder_text="Video Url...", textvariable = self.entry_value, font=font)
         self.url_entry.grid(row=0, column=0, padx=5, pady=5)
         
 
 
         #============ Search Button ============
 
-        self.search_video_button = ctk.CTkButton(self.video_url_frame, text="Search", width=50, text_font=font, command=self.search_data_function)
+        self.search_video_button = ctk.CTkButton(self.video_url_frame, text="Search", width=50, font=font, command=self.search_data_function)
         self.search_video_button.grid(row=0, column=1, padx=5, pady=5)
 
 
 
         #============ Download Button ============
 
-        self.search = ctk.CTkButton(self.main_frame, text="Download Now", width=50, text_font=font, command=self.download_video_function)
+        self.search = ctk.CTkButton(self.main_frame, text="Download Now", width=50, font=font, command=self.download_video_function)
         self.search.grid(row=3, column=0, padx=5, pady=5)
 
 
