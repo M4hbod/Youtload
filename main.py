@@ -20,8 +20,8 @@ class MainApp:
         #============ Main Window ============
 
         self.root = ctk.CTk()
-        self.root.geometry("800x480")
-        self.root.minsize(800, 480)
+        self.root.geometry("800x580")
+        self.root.minsize(800, 580)
 
         
         #============ Main Window Configurations ============
