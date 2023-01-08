@@ -32,7 +32,7 @@ class VideoInfoFrame():
 
         #============ Video Title ============
 
-        self.title_label = ctk.CTkLabel(self.main_frame, text="Title : ", font=font)
+        self.title_label = ctk.CTkLabel(self.main_frame, text="Title: ", font=font)
         self.title_label.grid(row=1, column=0, padx=10, pady=2.5, sticky='w')
 
         self.title = ctk.CTkLabel(self.main_frame, text="--", font=font)
@@ -42,7 +42,7 @@ class VideoInfoFrame():
 
         #============ Video Duration ============
 
-        self.duration_label = ctk.CTkLabel(self.main_frame, text="Duration : ", font=font)
+        self.duration_label = ctk.CTkLabel(self.main_frame, text="Duration: ", font=font)
         self.duration_label.grid(row=2, column=0, padx=10, pady=2.5, sticky='w')
 
         self.duration = ctk.CTkLabel(self.main_frame, text="--", font=font)
@@ -52,7 +52,7 @@ class VideoInfoFrame():
 
         #============ Video Views ============
 
-        self.views_label = ctk.CTkLabel(self.main_frame, text="Views : ", font=font)
+        self.views_label = ctk.CTkLabel(self.main_frame, text="Views: ", font=font)
         self.views_label.grid(row=3, column=0, padx=10, pady=2.5, sticky='w')
 
         self.views = ctk.CTkLabel(self.main_frame, text="--", font=font)

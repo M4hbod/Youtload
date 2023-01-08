@@ -27,7 +27,7 @@ class VideoFunctions(tube.YouTube):
     #networkSpeed function -> divides the filesize with the time taken for download
 
     @staticmethod
-    def networkSpeed(filesize : int, time_took : int):
+    def networkSpeed(filesize: int, time_took: int):
         try:
             size_in_mb = filesize/1000000
         except ZeroDivisionError:
@@ -60,7 +60,7 @@ class VideoFunctions(tube.YouTube):
 
     #fromSeconds function -> To convert seconds to hour:minute:seconds format
     @staticmethod
-    def fromSeconds(sec : int):
+    def fromSeconds(sec: int):
         time_list = str(dt.timedelta(seconds=sec))
         time_list = time_list.split(":")
 
@@ -76,7 +76,7 @@ class VideoFunctions(tube.YouTube):
 
     #fromBytes function -> To convert bytes to better size
     @staticmethod
-    def fromBytes(bytes : int):
+    def fromBytes(bytes: int):
 
         size = round(bytes/1000000, 1)
         return size
@@ -90,7 +90,7 @@ class VideoFunctions(tube.YouTube):
 
 
     #prettifyBytes function -> To convert bytes to units(MB, GB, TB, etc.)
-    def prettifyBytes(self, bytes : int):
+    def prettifyBytes(self, bytes: int):
 
         
         if bytes<1:
@@ -133,8 +133,8 @@ class VideoFunctions(tube.YouTube):
         time_taken = self.timeTaken(started_on, ended_on)
         speed_was = round(self.networkSpeed(video.filesize, time_taken), 4)
 
-        # print(f" Seconds took : {time_taken}")
-        # print(f" Average Speed : {speed_was}")
+        # print(f" Seconds took: {time_taken}")
+        # print(f" Average Speed: {speed_was}")
 
 
 

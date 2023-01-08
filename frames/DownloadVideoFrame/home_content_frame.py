@@ -43,11 +43,11 @@ class ContentFrame:
 
         #============ Main core.functions ============
 
-        self.search_data_function = lambda : self.function_manager.thread_function(self.video_info_frame.addData, (self.url_entry.get(), ))
+        self.search_data_function = lambda: self.function_manager.thread_function(self.video_info_frame.addData, (self.url_entry.get(), ))
 
-        self.download_video_function = lambda : self.function_manager.thread_function(self.function_manager.downloadVideo, (self.url_entry.get(), self.setting_frame.video_download_path, self.download_progress.mainProgressFunction))
+        self.download_video_function = lambda: self.function_manager.thread_function(self.function_manager.downloadVideo, (self.url_entry.get(), self.setting_frame.video_download_path, self.download_progress.mainProgressFunction))
 
-        # self.set_progress_bar_function = lambda : self.function_manager.thread_function(self.download_progress.mainProgressFunction, ())
+        # self.set_progress_bar_function = lambda: self.function_manager.thread_function(self.download_progress.mainProgressFunction, ())
 
 
         
@@ -60,7 +60,7 @@ class ContentFrame:
         #============ Url Entry ============
 
         self.entry_value = ctk.StringVar(self.main_frame)
-        self.url_entry = ctk.CTkEntry(self.video_url_frame, width=250, placeholder_text="Video Url...", textvariable = self.entry_value, font=font)
+        self.url_entry = ctk.CTkEntry(self.video_url_frame, width=350, placeholder_text="Video Url...", textvariable = self.entry_value, font=font)
         self.url_entry.grid(row=0, column=0, padx=5, pady=5)
         
 
@@ -78,7 +78,7 @@ class ContentFrame:
         self.search.grid(row=3, column=0, padx=5, pady=5)
 
 
-    def toggleFrame(self, what_to_show : str):
+    def toggleFrame(self, what_to_show: str):
         
 
         if what_to_show == "settings":

@@ -12,7 +12,7 @@ class AvailableMenuFrames():
         self.options_frame = ctk.CTkFrame(master, width=150)
         self.options_frame.grid(row=0, column=0, sticky='nswe', padx=7, pady=7)
         self.options_frame.grid_rowconfigure(0, minsize=10) 
-        self.image_size = 20
+        self.image_size = 30
 
         self.content = ContentFrame()
 
@@ -27,10 +27,10 @@ class AvailableMenuFrames():
         self.app_name.grid(row=1, column=0, padx=10, pady=10, sticky='nswe')
 
 
-        self.download_button = ctk.CTkButton(self.options_frame, image=self.download_icon, compound='left', text="Downloads", corner_radius=15, width=40, font=text_font, command=lambda : self.content.toggleFrame("downloads"))
+        self.download_button = ctk.CTkButton(self.options_frame, image=self.download_icon, compound='left', text="Downloads", corner_radius=15, width=40, font=text_font, command=lambda: self.content.toggleFrame("downloads"))
         self.download_button.grid(row=2, column=0, padx=5, pady=5)
 
 
-        self.settings_button = ctk.CTkButton(self.options_frame, image=self.settings_icon, compound='left', text="Settings", corner_radius=15, width=40, font=text_font, command=lambda : self.content.toggleFrame("settings"))
+        self.settings_button = ctk.CTkButton(self.options_frame, image=self.settings_icon, compound='left', text="Settings", corner_radius=15, width=40, font=text_font, command=lambda: self.content.toggleFrame("settings"))
         self.settings_button.grid(row=3, column=0, padx=5, pady=5)
        
