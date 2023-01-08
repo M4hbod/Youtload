@@ -1,11 +1,7 @@
 from doctest import master
-import tkinter as tk
 import customtkinter as ctk
-import tkinter.filedialog as filedialog
 import json
 import os
-
-
 
 JSON_FILE_PATH = "frames\SettingsFrame\configs.json"
 
@@ -93,11 +89,11 @@ class SettingsFrame:
     #Set path Function -> Select a path for downloading the video
     def setPath(self):
 
-        path = filedialog.askdirectory()
+        path = ctk.filedialog.askdirectory()
         if path == "":
             return
         
-        self.path_entry.delete(0, tk.END)
+        self.path_entry.delete(0, ctk.END)
         self.path_entry.insert(0, str(path))
         self.video_download_path = path
         print(f"path : {self.video_download_path}")

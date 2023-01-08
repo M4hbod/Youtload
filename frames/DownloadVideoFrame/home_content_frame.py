@@ -1,4 +1,3 @@
-import tkinter as tk
 import customtkinter as ctk
 import pyperclip as clip
 
@@ -69,7 +68,7 @@ class ContentFrame:
 
         #============ Url Entry ============
 
-        self.entry_value = tk.StringVar(self.main_frame)
+        self.entry_value = ctk.StringVar(self.main_frame)
         self.url_entry = ctk.CTkEntry(self.video_url_frame, width=250, placeholder_text="Video Url...", textvariable = self.entry_value, font=font)
         self.url_entry.grid(row=0, column=0, padx=5, pady=5)
         

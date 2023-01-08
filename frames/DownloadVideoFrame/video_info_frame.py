@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import tkinter as tk
 from core.Functions import video_functions as vf
 import customtkinter as ctk
 from PIL import Image
@@ -40,7 +39,7 @@ class VideoInfoFrame():
         self.title_label = ctk.CTkLabel(self.main_frame, text="Title : ", font=font)
         self.title_label.grid(row=1, column=0, padx=2.5, pady=2.5, sticky='w')
 
-        self.title = tk.Label(self.main_frame, text="--", bg="#343638", fg="white", font=font, wraplength=230)
+        self.title = ctk.CTkLabel(self.main_frame, text="--", font=font)
         self.title.grid(row=1, column=1, padx=2.5, pady=2.5)
 
 
@@ -50,7 +49,7 @@ class VideoInfoFrame():
         self.duration_label = ctk.CTkLabel(self.main_frame, text="Duration : ", font=font)
         self.duration_label.grid(row=2, column=0, padx=2.5, pady=2.5, sticky='w')
 
-        self.duration = tk.Label(self.main_frame, text="--", bg="#343638", fg="white", font=font, wraplength=230)
+        self.duration = ctk.CTkLabel(self.main_frame, text="--", font=font)
         self.duration.grid(row=2, column=1, padx=2.5, pady=2.5)
 
 
@@ -60,7 +59,7 @@ class VideoInfoFrame():
         self.views_label = ctk.CTkLabel(self.main_frame, text="Views : ", font=font)
         self.views_label.grid(row=3, column=0, padx=2.5, pady=2.5, sticky='w')
 
-        self.views = tk.Label(self.main_frame, text="--", bg="#343638", fg="white", font=font, wraplength=230)
+        self.views = ctk.CTkLabel(self.main_frame, text="--", font=font)
         self.views.grid(row=3, column=1, padx=2.5, pady=2.5)
 
 
@@ -93,14 +92,14 @@ class VideoInfoFrame():
             print(thumbnail)
             self.thumbnail = ctk.CTkImage(thumbnail, size=(thumbnail.size[0] / ratio, thumbnail.size[1] / ratio))
             self.thumbnail_label.configure(self.main_frame, text="", image=self.thumbnail)
-            self.title.config(text=data_found['title'])
-            self.duration.config(text=data_found['duration'])
+            self.title.configure(text=data_found['title'])
+            self.duration.configure(text=data_found['duration'])
             self.filesize.configure(text=config_text)
-            self.views.config(text=str(data_found['views']))
+            self.views.configure(text=str(data_found['views']))
 
         except Exception as e:
             print(e)
-            self.title.config(text="Error!")
-            self.duration.config(text="Error!")
+            self.title.configure(text="Error!")
+            self.duration.configure(text="Error!")
             self.filesize.configure(text="Error!")
-            self.views.config(text="Error!")
+            self.views.configure(text="Error!")

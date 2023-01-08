@@ -1,6 +1,5 @@
-import tkinter as tk
 import customtkinter as ctk
-from PIL import Image, ImageTk
+from PIL import Image
 from core.Functions.video_functions import VideoFunctions
 from frames.SettingsFrame.setting_frame import SettingsFrame
 from frames.DownloadVideoFrame.home_content_frame import ContentFrame
