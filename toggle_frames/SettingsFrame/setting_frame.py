@@ -3,6 +3,7 @@ import tkinter as tk
 import customtkinter as ctk
 import tkinter.filedialog as filedialog
 import json
+import os
 
 
 
@@ -22,6 +23,8 @@ class SettingsFrame:
         self.database = self.getJSON(JSON_FILE_PATH)
 
         self.video_download_path = self.database['path']
+        if self.video_download_path == "":
+            self.video_download_path = f"{os.getcwd()}\Download".replace("\\", "/")
 
 
 
@@ -43,7 +46,7 @@ class SettingsFrame:
 
         self.path_entry = ctk.CTkEntry(self.options_frame, font=font, width=350)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
-        self.path_entry.insert(0, self.database['path'])
+        self.path_entry.insert(0, self.video_download_path)
         
 
 
@@ -76,9 +79,11 @@ class SettingsFrame:
     def setPath(self):
 
         path = filedialog.askdirectory()
-        #self.path_entry.configure(state=tk.NORMAL)
+        if path == "":
+            return
+        
+        self.path_entry.delete(0, tk.END)
         self.path_entry.insert(0, str(path))
-        #self.path_entry.configure(state=tk.DISABLED)
         self.video_download_path = path
         print(f"path : {self.video_download_path}")
 
