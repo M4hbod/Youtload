@@ -23,8 +23,8 @@ class AvailableMenuFrames():
 
         #============ icons ============  
 
-        self.download_icon = ctk.CTkImage(Image.open(r'Icons\LightImage\download.png').resize((self.image_size, self.image_size), Image.NEAREST))
-        self.settings_icon = ctk.CTkImage(Image.open(r'Icons\LightImage\settings.png').resize((self.image_size, self.image_size), Image.NEAREST))
+        self.download_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\download.png').resize((self.image_size, self.image_size), Image.NEAREST))
+        self.settings_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\settings.png').resize((self.image_size, self.image_size), Image.NEAREST))
 
 
 
