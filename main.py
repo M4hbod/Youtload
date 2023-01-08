@@ -4,6 +4,7 @@ from available_menus_frame import AvailableMenuFrames
 from core.functions import directory
 from frames.DownloadVideoFrame.home_content_frame import ContentFrame
 from frames.SettingsFrame.setting_frame import SettingsFrame
+import tkinter
 
 current_directory = directory.get_current_directory()
 files_and_folders = directory.get_files_and_folders(current_directory)
