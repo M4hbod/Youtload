@@ -1,7 +1,8 @@
 import json
-import os
 
 import customtkinter as ctk
+
+from core.functions import directory
 
 JSON_FILE_PATH = "frames/SettingsFrame/configs.json"
 
@@ -22,7 +23,7 @@ class SettingsFrame:
         self.style = self.database['style']
         
         if self.video_download_path == "":
-            self.video_download_path = f"{os.getcwd()}\Download".replace("\\", "/")
+            self.video_download_path = f"{directory.get_current_directory()}\Download".replace("\\", "/")
         if self.style == "":
             self.style = "Dark"
         
@@ -74,7 +75,7 @@ class SettingsFrame:
 
 
 
-    #============ Attributes/core.Functions ============
+    #============ Attributes/core.functions ============
 
     #showFrame Function -> To show the frame by unforgetting the grid
     def showFrame(self):

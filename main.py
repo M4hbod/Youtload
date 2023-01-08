@@ -1,13 +1,14 @@
-import os
-
 import customtkinter as ctk
 
 from available_menus_frame import AvailableMenuFrames
+from core.functions import directory
 from frames.DownloadVideoFrame.home_content_frame import ContentFrame
 from frames.SettingsFrame.setting_frame import SettingsFrame
 
-current_directory = os.getcwd()
-files_and_folders = os.listdir(current_directory)
+current_directory = directory.get_current_directory()
+files_and_folders = directory.get_files_and_folders(current_directory)
+if not directory.check_if_directory_exists('temp'):
+    directory.create_directory('temp')
 
 class MainApp:
 
