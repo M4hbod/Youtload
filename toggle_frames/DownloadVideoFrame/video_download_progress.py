@@ -11,7 +11,7 @@ class DownloadProgressFrame:
     #============ main frame configurations ============
 
         self.main_frame = ctk.CTkFrame(master)
-        self.main_frame.grid(row=2, column=0, padx=20, pady=20, sticky="nswe")
+        self.main_frame.grid(row=3, column=0, padx=20, pady=20, sticky="nswe")
 
 
     #============ Objects ============
