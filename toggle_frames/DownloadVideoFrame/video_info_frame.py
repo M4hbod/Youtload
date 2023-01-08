@@ -2,6 +2,9 @@ import customtkinter as ctk
 import tkinter as tk
 from ..Functions import video_functions as vf
 import customtkinter as ctk
+from PIL import Image
+import wget
+
 
 
 
@@ -13,13 +16,24 @@ class VideoInfoFrame():
         #============ Main Video Info Frame ============       
 
         self.main_frame = ctk.CTkFrame(master)
-        self.main_frame.grid(row=1, sticky='nswe', padx=20, pady=20)
+        self.main_frame.grid(row=2, sticky='nswe', padx=20, pady=5)
         self.main_frame.grid_columnconfigure(1, weight=1)
         self.main_frame.grid_rowconfigure(5, weight=2)
 
         self.function_manager = vf.VideoFunctions()
 
-
+        
+        #============ Thumbnail Frame ============
+                
+        self.thumbnail_frame = ctk.CTkFrame(master)
+        self.thumbnail_frame.grid(row=1, sticky='nswe', padx=20, pady=5)
+        self.thumbnail_frame.grid_columnconfigure(3, weight=1)
+        
+        #============ Video Thumbnail ============
+        
+        self.thumbnail = ctk.CTkImage(Image.open("Icons/Logo.png"), size=(300, 130))
+        self.thumbnail_label = ctk.CTkLabel(self.thumbnail_frame, text="", image=self.thumbnail, anchor='center')
+        self.thumbnail_label.pack(pady=10)
 
         #============ Video Title ============
 
@@ -72,12 +86,20 @@ class VideoInfoFrame():
             data_found = self.function_manager.getAllData(url)
 
             config_text = f"{str(data_found['size'])} {data_found['size_type']}"
+            thumbnail = wget.download(data_found['thumbnail-url'], "tmp/thumbnail.png", bar=None)
+            thumbnail = Image.open(thumbnail)
+            ratio = thumbnail.size[0] / 300
+            
+            print(thumbnail)
+            self.thumbnail = ctk.CTkImage(thumbnail, size=(thumbnail.size[0] / ratio, thumbnail.size[1] / ratio))
+            self.thumbnail_label.configure(self.main_frame, text="", image=self.thumbnail)
             self.title.config(text=data_found['title'])
             self.duration.config(text=data_found['duration'])
             self.filesize.configure(text=config_text)
             self.views.config(text=str(data_found['views']))
 
-        except:
+        except Exception as e:
+            print(e)
             self.title.config(text="Error!")
             self.duration.config(text="Error!")
             self.filesize.configure(text="Error!")
