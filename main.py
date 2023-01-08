@@ -13,13 +13,6 @@ from toggle_frames.SettingsFrame.setting_frame import SettingsFrame
 current_directory = os.getcwd()
 files_and_folders = os.listdir(current_directory)
 
-if "downloaded_videos" in files_and_folders:
-    pass
-
-else:
-    os.mkdir("downloaded_videos")
-
-
 class MainApp:
 
     def __init__(self):
