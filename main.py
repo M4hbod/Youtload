@@ -19,6 +19,7 @@ class MainApp:
         #============ Main Window ============
 
         self.root = ctk.CTk()
+        self.root.title("Youtload")
         self.root.geometry("800x580")
         self.root.minsize(800, 580)
 
