@@ -6,7 +6,7 @@ import json
 
 
 
-JSON_FILE_PATH = "main_frames\\toggle_frames\SettingsFrame\configs.json"
+JSON_FILE_PATH = "toggle_frames\SettingsFrame\configs.json"
 
 class SettingsFrame:
 
