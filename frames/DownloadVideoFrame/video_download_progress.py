@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-from ..Functions import video_functions as vf
+from core.Functions import video_functions as vf
 
 
 #============ DownloadProgressFrame ============
@@ -35,7 +35,7 @@ class DownloadProgressFrame:
 
 
 
-#============ Attributes/Functions ============
+#============ Attributes/core.Functions ============
 
     #mainProgressFunction -> For updating the download info
 

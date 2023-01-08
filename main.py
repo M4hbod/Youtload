@@ -7,8 +7,8 @@ import os
 
 #Inbuilt Imports
 from available_menus_frame import AvailableMenuFrames
-from toggle_frames.DownloadVideoFrame.home_content_frame import ContentFrame
-from toggle_frames.SettingsFrame.setting_frame import SettingsFrame
+from frames.DownloadVideoFrame.home_content_frame import ContentFrame
+from frames.SettingsFrame.setting_frame import SettingsFrame
 
 current_directory = os.getcwd()
 files_and_folders = os.listdir(current_directory)

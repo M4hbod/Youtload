@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 import pyperclip as clip
 
-from ..Functions.video_functions import VideoFunctions
+from core.Functions.video_functions import VideoFunctions
 from .video_info_frame import VideoInfoFrame
 from ..SettingsFrame.setting_frame import SettingsFrame 
 from .video_download_progress import DownloadProgressFrame
@@ -51,7 +51,7 @@ class ContentFrame:
 
 
 
-        #============ Main Functions ============
+        #============ Main core.Functions ============
 
         self.search_data_function = lambda : self.function_manager.thread_function(self.video_info_frame.addData, (self.url_entry.get(), ))
 

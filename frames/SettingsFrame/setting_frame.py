@@ -7,7 +7,7 @@ import os
 
 
 
-JSON_FILE_PATH = "toggle_frames\SettingsFrame\configs.json"
+JSON_FILE_PATH = "frames\SettingsFrame\configs.json"
 
 class SettingsFrame:
 
@@ -78,7 +78,7 @@ class SettingsFrame:
 
 
 
-    #============ Attributes/Functions ============
+    #============ Attributes/core.Functions ============
 
     #showFrame Function -> To show the frame by unforgetting the grid
     def showFrame(self):

@@ -1,9 +1,9 @@
 import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
-from toggle_frames.Functions.video_functions import VideoFunctions
-from toggle_frames.SettingsFrame.setting_frame import SettingsFrame
-from toggle_frames.DownloadVideoFrame.home_content_frame import ContentFrame
+from core.Functions.video_functions import VideoFunctions
+from frames.SettingsFrame.setting_frame import SettingsFrame
+from frames.DownloadVideoFrame.home_content_frame import ContentFrame
 
 
 
@@ -25,8 +25,6 @@ class AvailableMenuFrames():
 
         self.download_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\download.png').resize((self.image_size, self.image_size), Image.NEAREST))
         self.settings_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\settings.png').resize((self.image_size, self.image_size), Image.NEAREST))
-
-
 
 
         self.app_name = ctk.CTkLabel(self.options_frame, text="Tabs", font=font, text_color='#ffffff')

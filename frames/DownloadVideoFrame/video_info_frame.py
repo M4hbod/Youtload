@@ -1,6 +1,6 @@
 import customtkinter as ctk
 import tkinter as tk
-from ..Functions import video_functions as vf
+from core.Functions import video_functions as vf
 import customtkinter as ctk
 from PIL import Image
 import wget
@@ -78,7 +78,7 @@ class VideoInfoFrame():
 
 
 
-    #============ Frame Functions ============
+    #============ Frame core.Functions ============
 
     def addData(self, url):
 
