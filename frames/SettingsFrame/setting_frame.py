@@ -40,20 +40,20 @@ class SettingsFrame:
         #============ Widgets ============
 
         self.options_frame = ctk.CTkFrame(self.main_frame)
-        self.options_frame.grid(row=0, sticky='nswe', padx=20, pady=20)
+        self.options_frame.grid(row=0, sticky='nswe', padx=20, pady=(20,5))
 
         #============ Inside path_frame ============
 
 
         # Path Label
 
-        self.path_label = ctk.CTkLabel(self.options_frame, text="Path : ", font=font, width=50)
+        self.path_label = ctk.CTkLabel(self.options_frame, text="Path: ", font=font, width=50)
         self.path_label.grid(row=0, column=0)
 
 
         # Path Entry -> path for downloading videos
 
-        self.path_entry = ctk.CTkEntry(self.options_frame, font=font, width=350)
+        self.path_entry = ctk.CTkEntry(self.options_frame, font=font, width=470)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
         self.path_entry.insert(0, self.video_download_path)
         
@@ -61,7 +61,7 @@ class SettingsFrame:
 
         # Browse Button -> for choosing a path
 
-        self.path_button = ctk.CTkButton(self.options_frame, text="Browse", font=font, width=40, command=self.setPath)
+        self.path_button = ctk.CTkButton(self.options_frame, text="Browse", font=font, width=60, command=self.setPath)
         self.path_button.grid(row=0, column=2, padx=5, pady=5)
 
 
@@ -76,11 +76,11 @@ class SettingsFrame:
         # Appearance Mode OptionMenu -> Light, Dark, System
         self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"],
                                                                        command=self.change_appearance_mode_event)
-        self.appearance_mode_optionemenu.grid(row=1, column=1, padx=20, pady=(10, 10))
+        self.appearance_mode_optionemenu.grid(row=1, column=1, padx=30, pady=(10, 10))
         
         # Theme Label
         self.appearance_theme_label = ctk.CTkLabel(self.appearance_frame, text="Theme:", font=font, width=50)
-        self.appearance_theme_label.grid(row=1, column=2, padx=10, pady=(10, 10))
+        self.appearance_theme_label.grid(row=1, column=2, padx=30, pady=(10, 10))
         
         # Theme OptionMenu -> Light, Dark, System
         self.appearance_theme_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Blue", "Green", "Dark-Blue"],
@@ -117,7 +117,7 @@ class SettingsFrame:
         self.path_entry.delete(0, ctk.END)
         self.path_entry.insert(0, str(path))
         self.video_download_path = path
-        print(f"path : {self.video_download_path}")
+        print(f"path: {self.video_download_path}")
 
 
         json_data = self.getJSON(JSON_FILE_PATH)
