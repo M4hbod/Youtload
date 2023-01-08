@@ -1,6 +1,6 @@
 import customtkinter as ctk
 
-from core.Functions.video_functions import VideoFunctions
+from core.functions import VideoFunctions
 from ..SettingsFrame.setting_frame import SettingsFrame
 from .video_download_progress import DownloadProgressFrame
 from .video_info_frame import VideoInfoFrame
@@ -41,7 +41,7 @@ class ContentFrame:
 
 
 
-        #============ Main core.Functions ============
+        #============ Main core.functions ============
 
         self.search_data_function = lambda : self.function_manager.thread_function(self.video_info_frame.addData, (self.url_entry.get(), ))
 

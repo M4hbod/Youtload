@@ -2,7 +2,7 @@ import customtkinter as ctk
 import wget
 from PIL import Image
 
-from core.Functions import video_functions as vf
+from core.functions import VideoFunctions
 
 
 class VideoInfoFrame():
@@ -16,7 +16,7 @@ class VideoInfoFrame():
         self.main_frame.grid_columnconfigure(1, weight=1)
         self.main_frame.grid_rowconfigure(5, weight=2)
 
-        self.function_manager = vf.VideoFunctions()
+        self.function_manager = VideoFunctions()
 
         
         #============ Thumbnail Frame ============
@@ -74,7 +74,7 @@ class VideoInfoFrame():
 
 
 
-    #============ Frame core.Functions ============
+    #============ Frame core.functions ============
 
     def addData(self, url):
 

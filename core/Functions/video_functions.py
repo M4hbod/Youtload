@@ -12,7 +12,7 @@ class VideoFunctions(tube.YouTube):
 
 
 
-    #============ Functions ============
+    #============ functions ============
 
     #thread function to run each function in thread so the GUI doesnt get stuck
 
