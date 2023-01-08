@@ -1,11 +1,8 @@
 import customtkinter as ctk
-from core.Functions import video_functions as vf
-import customtkinter as ctk
-from PIL import Image
 import wget
+from PIL import Image
 
-
-
+from core.Functions import video_functions as vf
 
 
 class VideoInfoFrame():

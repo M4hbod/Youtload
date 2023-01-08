@@ -1,9 +1,9 @@
-from doctest import master
-import customtkinter as ctk
 import json
 import os
 
-JSON_FILE_PATH = "frames\SettingsFrame\configs.json"
+import customtkinter as ctk
+
+JSON_FILE_PATH = "frames/SettingsFrame/configs.json"
 
 class SettingsFrame:
 

@@ -1,18 +1,9 @@
 import customtkinter as ctk
-import pyperclip as clip
 
 from core.Functions.video_functions import VideoFunctions
-from .video_info_frame import VideoInfoFrame
-from ..SettingsFrame.setting_frame import SettingsFrame 
+from ..SettingsFrame.setting_frame import SettingsFrame
 from .video_download_progress import DownloadProgressFrame
-
-
-
-
-
-
-
-
+from .video_info_frame import VideoInfoFrame
 
 #============ ContentFrame Window ============
 

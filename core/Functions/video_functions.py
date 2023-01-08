@@ -1,6 +1,7 @@
-import threading
-import pytube as tube
 import datetime as dt
+import threading
+
+import pytube as tube
 
 
 class VideoFunctions(tube.YouTube):

@@ -1,11 +1,7 @@
-#External Imports
+import os
+
 import customtkinter as ctk
-import os
-from PIL import Image, ImageTk
-import os
 
-
-#Inbuilt Imports
 from available_menus_frame import AvailableMenuFrames
 from frames.DownloadVideoFrame.home_content_frame import ContentFrame
 from frames.SettingsFrame.setting_frame import SettingsFrame
