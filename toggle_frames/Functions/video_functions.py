@@ -1,13 +1,6 @@
 import threading
 import pytube as tube
 import datetime as dt
-import os
-
-
-
-
-url = "https://youtu.be/8UVNT4wvIGY"
-
 
 
 class VideoFunctions(tube.YouTube):
