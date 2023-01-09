@@ -1,9 +1,9 @@
 import customtkinter as ctk
 
-from available_menus_frame import AvailableMenuFrames
+from main_frames import AvailableMenuFrames
 from core.functions import directory
-from frames.DownloadVideoFrame.home_content_frame import ContentFrame
 from frames.SettingsFrame.setting_frame import SettingsFrame
+from frames.DownloadVideoFrame.download_video_frame import VideoInfoFrame
 
 current_directory = directory.get_current_directory()
 files_and_folders = directory.get_files_and_folders(current_directory)
@@ -35,21 +35,6 @@ class MainApp:
         # In self.root at 1st row and 1st column
         
         self.option_frame = AvailableMenuFrames(self.root, self.main_font, self.big_font)
-
-
-
-        #============ Content/Results Frame ============
-        # In self.root at 1st row and 2nd column
-
-        self.content_frame = ContentFrame(self.root, self.main_font)
-
-
-
-        ##============ Settings Frame ============
-
-        self.settings_frame = SettingsFrame(self.root)
-
-
 
 
         self.root.mainloop()
