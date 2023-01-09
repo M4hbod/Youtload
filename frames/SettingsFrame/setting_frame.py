@@ -1,5 +1,4 @@
-import json
-
+from core.functions import json
 import customtkinter as ctk
 from tkinter import messagebox
 
@@ -18,7 +17,7 @@ class SettingsFrame:
         self.main_frame.grid_columnconfigure(0, weight=0)
         self.main_frame.grid_forget() 
 
-        self.database = self.getJSON(JSON_FILE_PATH)
+        self.database = json.getJSON(JSON_FILE_PATH)
 
         self.video_download_path = self.database['path']
         self.mode = self.database['mode']
@@ -120,38 +119,21 @@ class SettingsFrame:
         print(f"path: {self.video_download_path}")
 
 
-        json_data = self.getJSON(JSON_FILE_PATH)
+        json_data = json.getJSON(JSON_FILE_PATH)
         if 'path' in json_data:
             del json_data['path']
 
-            self.setJSON(JSON_FILE_PATH, "path", path)
-
-    # Get JSON -> To get the data in the configs.json file
-    def getJSON(self, filename):
-
-        with open(filename, 'r') as data:
-            all_data = json.load(data)
-
-        return all_data
-
-    def setJSON(self, filename, key, value):
-        with open(filename, "r") as jsonFile:
-            data = json.load(jsonFile)
-        
-        data[key] = value
-        
-        with open(filename, "w") as jsonFile:
-            json.dump(data, jsonFile)
+            json.setJSON(JSON_FILE_PATH, "path", path)
 
     # Change appearance mode event -> To change the appearance mode of the app
     def change_appearance_mode_event(self, new_appearance_mode: str):
         self.mode = new_appearance_mode
-        self.setJSON(JSON_FILE_PATH, "mode", self.mode)
+        json.setJSON(JSON_FILE_PATH, "mode", self.mode)
         ctk.set_appearance_mode(self.mode)
         
     def change_appearance_theme_event(self, new_appearance_theme: str):
         self.theme = new_appearance_theme
-        self.setJSON(JSON_FILE_PATH, "theme", self.theme.lower())
+        json.setJSON(JSON_FILE_PATH, "theme", self.theme.lower())
         ctk.set_default_color_theme(self.theme.lower())
         messagebox.showinfo("Restart", "Please restart the app to apply the changes.")
 
