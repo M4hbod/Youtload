@@ -92,8 +92,8 @@ class VideoInfoFrame():
         self.download_label = ctk.CTkLabel(self.download_progress_frame, text="Downloading...", font=font)
         self.download_label.grid(row=0, column=0, padx=10, pady=2.5, sticky="W")
         
-        self.downloaded_percentage_label = ctk.CTkLabel(self.download_progress_frame, text="--", font=font)
-        self.downloaded_percentage_label.grid(row=0, column=1, padx=(254, 152), pady=2.5)
+        self.downloaded_percentage_label = ctk.CTkLabel(self.download_progress_frame, text="", font=font)
+        self.downloaded_percentage_label.grid(row=0, column=1, padx=(50, 160), pady=2.5)
         
         self.download_button = ctk.CTkButton(self.download_progress_frame, text="Download Now", width=50, font=font, command=self.download_video_function)
         self.download_button.grid(row=0, column=2, padx=5, pady=5)
