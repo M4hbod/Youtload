@@ -116,7 +116,7 @@ class VideoFunctions(tube.YouTube):
 
     #downloadVideo function -> the name explains it
 
-    def downloadVideo(self, url, path_for_download = None, progress_func = None):
+    def download_video(self, url, path_for_download = None, progress_func = None):
 
         print(path_for_download, url)
         started_on = self.createTime()
@@ -142,7 +142,7 @@ class VideoFunctions(tube.YouTube):
 
     #for getting the video data
 
-    def getAllData(self, url):
+    def get_all_data(self, url):
         data_dict = {}
 
         video = tube.YouTube(url)
