@@ -12,13 +12,16 @@ class SettingsFrame:
     #============ Initialization ============
     def __init__(self, master = None, font = ('Segoe UI Black', 10)):
 
-        self.main_frame = ctk.CTkFrame(master)
-        self.main_frame.grid(row=0, column=0, padx=7, pady=7, sticky='nswe')
-        self.main_frame.grid_columnconfigure(0, weight=0)
-        self.main_frame.grid_forget() 
+        # Settings Frame
+        self.settings_frame = ctk.CTkFrame(master)
+        self.settings_frame.grid(row=0, column=0, padx=7, pady=7, sticky='nswe')
+        self.settings_frame.grid_columnconfigure(0, weight=0)
+        self.settings_frame.grid_forget() 
 
+        # Read Json File
         self.database = json.getJSON(JSON_FILE_PATH)
 
+        # Define Vars
         self.video_download_path = self.database['path']
         self.mode = self.database['mode']
         self.theme = self.database['theme']
@@ -30,42 +33,31 @@ class SettingsFrame:
         if self.theme == "":
             self.theme = "Blue"
         
-        
+        # Set Themes
         ctk.set_appearance_mode(self.mode)
         ctk.set_default_color_theme(self.theme.lower())
 
-
-
-        #============ Widgets ============
-
-        self.options_frame = ctk.CTkFrame(self.main_frame)
-        self.options_frame.grid(row=0, sticky='nswe', padx=20, pady=(20,5))
-
-        #============ Inside path_frame ============
-
+        # ======== PATH ========
+        # Path Frame
+        self.path_frame = ctk.CTkFrame(self.settings_frame)
+        self.path_frame.grid(row=0, sticky='nswe', padx=20, pady=(20,5))
 
         # Path Label
-
-        self.path_label = ctk.CTkLabel(self.options_frame, text="Path: ", font=font, width=50)
+        self.path_label = ctk.CTkLabel(self.path_frame, text="Path: ", font=font, width=50)
         self.path_label.grid(row=0, column=0)
 
-
         # Path Entry -> path for downloading videos
-
-        self.path_entry = ctk.CTkEntry(self.options_frame, font=font, width=470)
+        self.path_entry = ctk.CTkEntry(self.path_frame, font=font, width=470)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
         self.path_entry.insert(0, self.video_download_path)
         
-
-
         # Browse Button -> for choosing a path
-
-        self.path_button = ctk.CTkButton(self.options_frame, text="Browse", font=font, width=60, command=self.setPath)
+        self.path_button = ctk.CTkButton(self.path_frame, text="Browse", font=font, width=60, command=self.setPath)
         self.path_button.grid(row=0, column=2, padx=5, pady=5)
 
-
-        # Appearamce Frame
-        self.appearance_frame = ctk.CTkFrame(self.main_frame)
+        # ======== APPEARANCE ========
+        # Appearance Frame
+        self.appearance_frame = ctk.CTkFrame(self.settings_frame)
         self.appearance_frame.grid(row=1, sticky='nswe', padx=20, pady=5)
         
         # Appearance Mode Label
@@ -76,6 +68,7 @@ class SettingsFrame:
         self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"],
                                                                        command=self.change_appearance_mode_event)
         self.appearance_mode_optionemenu.grid(row=1, column=1, padx=30, pady=(10, 10))
+        self.appearance_mode_optionemenu.set(self.mode)
         
         # Theme Label
         self.appearance_theme_label = ctk.CTkLabel(self.appearance_frame, text="Theme:", font=font, width=50)
@@ -85,25 +78,18 @@ class SettingsFrame:
         self.appearance_theme_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Blue", "Green", "Dark-Blue"],
                                                                        command=self.change_appearance_theme_event)
         self.appearance_theme_optionemenu.grid(row=1, column=3, padx=20, pady=(10, 10))
-        
-        
-        
-        # Set Default Values
-        self.appearance_mode_optionemenu.set(self.mode)
         self.appearance_theme_optionemenu.set(self.theme.title())
-
-
 
     #============ Attributes/core.functions ============
 
     #showFrame Function -> To show the frame by unforgetting the grid
     def showFrame(self):
-        self.main_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
+        self.settings_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
 
 
     #hideFrame Function -> Ofc, the vise versa of showFrame function
     def hideFrame(self):
-        self.main_frame.grid_forget()
+        self.settings_frame.grid_forget()
 
 
     #Set path Function -> Select a path for downloading the video
