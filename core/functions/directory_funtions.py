@@ -18,3 +18,11 @@ class Directory:
     @staticmethod
     def get_files_and_folders(path):
         return os.listdir(path)
+    
+    @staticmethod
+    def clear_directory(path):
+        for file in os.listdir(path):
+            try:
+                os.remove(os.path.join(path, file))
+            except:
+                pass
