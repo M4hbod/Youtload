@@ -3,9 +3,6 @@ import customtkinter as ctk
 from tkinter import messagebox
 
 from core.functions import directory
-
-JSON_FILE_PATH = "frames/SettingsFrame/configs.json"
-
 class SettingsFrame:
 
 
@@ -19,7 +16,7 @@ class SettingsFrame:
         self.settings_frame.grid_forget() 
 
         # Read Json File
-        self.database = json.getJSON(JSON_FILE_PATH)
+        self.database = json.getJSON(r"database\config.json")
 
         # Define Vars
         self.video_download_path = self.database['path']

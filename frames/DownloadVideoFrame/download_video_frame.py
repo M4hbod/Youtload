@@ -4,8 +4,6 @@ from PIL import Image
 from core.functions import json, directory
 from core.functions import VideoFunctions
 
-JSON_FILE_PATH = "frames/SettingsFrame/configs.json"
-
 class VideoInfoFrame():
 
     def __init__(self, master = None, font = ('Segoe UI Black', 10)):
@@ -17,7 +15,7 @@ class VideoInfoFrame():
         self.sex_frames.grid_forget() 
             
         self.youtube = VideoFunctions()
-        self.database = json.getJSON(JSON_FILE_PATH)
+        self.database = json.getJSON(r"database\config.json")
         self.path = self.database['path']
         if self.path == "":
             self.path = f"{directory.get_current_directory()}\Download".replace("\\", "/")
