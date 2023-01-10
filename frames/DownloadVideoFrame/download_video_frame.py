@@ -18,7 +18,7 @@ class VideoInfoFrame():
         self.database = json.getJSON(r"database\config.json")
         self.path = self.database['path']
         if self.path == "":
-            self.path = f"{directory.get_current_directory()}\Download".replace("\\", "/")
+            self.path = rf"{directory.get_current_directory()}\Download"
             
         self.search_data_function = lambda: self.youtube.thread_function(self.show_info, (self.url_entry.get(), ))
         self.download_video_function = lambda: self.youtube.thread_function(self.youtube.download_video, (self.url_entry.get(), self.path, self.progress_function))
