@@ -41,7 +41,7 @@ class SettingsFrame:
 
         # Path Label
         self.path_label = ctk.CTkLabel(self.path_frame, text="Path: ", font=font, width=50)
-        self.path_label.grid(row=0, column=0)
+        self.path_label.grid(row=0, column=0, padx=(10, 0))
 
         # Path Entry -> path for downloading videos
         self.path_entry = ctk.CTkEntry(self.path_frame, font=font, width=470)
@@ -59,22 +59,21 @@ class SettingsFrame:
         
         # Appearance Mode Label
         self.appearance_mode_label = ctk.CTkLabel(self.appearance_frame, text="Mode:", font=font, width=50)
-        self.appearance_mode_label.grid(row=1, column=0, padx=10, pady=(10, 10))
+        self.appearance_mode_label.grid(row=1, column=0, padx=(10, 0), pady=(10, 10))
         
         # Appearance Mode OptionMenu -> Light, Dark, System
-        self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"],
-                                                                       command=self.change_appearance_mode_event)
-        self.appearance_mode_optionemenu.grid(row=1, column=1, padx=30, pady=(10, 10))
+        self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"], command=self.change_appearance_mode_event)
+        self.appearance_mode_optionemenu.grid(row=1, column=1, padx=5, pady=(10, 10))
         self.appearance_mode_optionemenu.set(self.mode)
         
         # Theme Label
         self.appearance_theme_label = ctk.CTkLabel(self.appearance_frame, text="Theme:", font=font, width=50)
-        self.appearance_theme_label.grid(row=1, column=2, padx=30, pady=(10, 10))
+        self.appearance_theme_label.grid(row=1, column=2, padx=(196, 0), pady=(10, 10))
         
         # Theme OptionMenu -> Light, Dark, System
         self.appearance_theme_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Blue", "Green", "Dark-Blue"],
                                                                        command=self.change_appearance_theme_event)
-        self.appearance_theme_optionemenu.grid(row=1, column=3, padx=20, pady=(10, 10))
+        self.appearance_theme_optionemenu.grid(row=1, column=3, padx=10, pady=(10, 10))
         self.appearance_theme_optionemenu.set(self.theme.title())
 
     #Set path Function -> Select a path for downloading the video
