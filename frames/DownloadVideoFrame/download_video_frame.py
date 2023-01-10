@@ -15,7 +15,7 @@ class VideoInfoFrame():
         self.sex_frames.grid_forget() 
             
         self.youtube = VideoFunctions()
-        self.database = json.getJSON(r"database\config.json")
+        self.database = json.get_json(r"database\config.json")
         self.path = self.database['path']
         if self.path == "":
             self.path = rf"{directory.get_current_directory()}\Download"

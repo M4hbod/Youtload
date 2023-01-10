@@ -3,7 +3,7 @@ import json
 class Json:
     
     @staticmethod
-    def getJSON(filename):
+    def get_json(filename):
 
         with open(filename, 'r') as data:
             all_data = json.load(data)
@@ -11,7 +11,7 @@ class Json:
         return all_data
 
     @staticmethod
-    def setJSON(filename, key, value):
+    def set_json(filename, key, value):
         with open(filename, "r") as jsonFile:
             data = json.load(jsonFile)
         
