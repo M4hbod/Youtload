@@ -1,148 +1,91 @@
 import datetime as dt
 import threading
+from typing import Literal
 
 import pytube as tube
 
 
 class VideoFunctions(tube.YouTube):
 
-
     def __init__(self):
          self.TIME_FORMAT = '%H:%M:%S'
 
-
-
-    #============ functions ============
-
-    #thread function to run each function in thread so the GUI doesnt get stuck
-
+    # To run each function in thread so the GUI doesnt get stuck
     @staticmethod
-    def thread_function(function, arguments):
+    def thread_function(function, arguments) -> None:
 
         function_in_thread = threading.Thread(target=function, args=arguments)
 
         function_in_thread.start()
 
-
-    #networkSpeed function -> divides the filesize with the time taken for download
-
+    # Divides the filesize with the time taken for download
     @staticmethod
-    def networkSpeed(filesize: int, time_took: int):
+    def networkSpeed(filesize: int, time_took: int) -> int | None:
         try:
             size_in_mb = filesize/1000000
         except ZeroDivisionError:
             print("Filesize cant be zero!")
             return
 
-        speed = int(size_in_mb/time_took)
-        return speed
+        return int(size_in_mb/time_took)
 
-
-    #timeTaken function -> gets the times for the start and end the download function and subtracts them
-
+    # Gets the times for the start and end the download function and subtracts them
     @staticmethod
-    def timeTaken(start_time, end_time, in_seconds = True):
+    def timeTaken(start_time, end_time, in_seconds = True) -> list[str] | int:
         difference_in_time = str(end_time - start_time)
 
         time_components = difference_in_time.split(':')
 
-        if in_seconds:
-            hours = int(time_components[0]) * 60 * 60
-            minutes = int(time_components[1]) * 60
-            seconds = hours + minutes + int(time_components[2])
-            total_seconds = hours + minutes + seconds
-            
-            return total_seconds
-        
-        else:
+        if not in_seconds:
             return time_components
+        
+        hours = int(time_components[0]) * 60 * 60
+        minutes = int(time_components[1]) * 60
+        seconds = hours + minutes + int(time_components[2])
+        return hours + minutes + seconds
 
-
-    #fromSeconds function -> To convert seconds to hour:minute:seconds format
+    # To convert seconds to hour:minute:seconds format
     @staticmethod
-    def fromSeconds(sec: int):
+    def fromSeconds(sec: int) -> str:
         time_list = str(dt.timedelta(seconds=sec))
         time_list = time_list.split(":")
 
-        modified_list = []
-        for times in time_list:
-            if int(times) == 0:
-                pass
-            else:
-                modified_list.append(times)
-        
+        modified_list = [times for times in time_list if int(times) != 0]
         return ":".join(modified_list)
-    
 
-    #fromBytes function -> To convert bytes to better size
+    # To convert bytes to better size
     @staticmethod
-    def fromBytes(bytes: int):
+    def fromBytes(bytes: int) -> float:
 
-        size = round(bytes/1000000, 1)
-        return size
+        return round(bytes/1000000, 1)
 
-
-    #toPercentage function -> To show percentage of video downloaded
+    # To show percentage of video downloaded
     @staticmethod
-    def toPercentage(main_int, bytes):
+    def toPercentage(main_int, bytes) -> float:
 
         return round((bytes/main_int)*100, 1) 
 
+    # To convert bytes to units(MB, GB, TB, etc.)
+    def prettifyBytes(self, bytes: int) -> Literal['KB', 'MB', 'GB']:
 
-    #prettifyBytes function -> To convert bytes to units(MB, GB, TB, etc.)
-    def prettifyBytes(self, bytes: int):
-
-        
-        if bytes<1:
+        if bytes < 1:
             return "KB"
 
-        elif bytes<1000:
+        elif bytes < 1000:
            return "MB"
 
-        elif bytes>=1000:
-           return "GB"
+        else:
+            return "GB"
 
-
-    #createTime function -> for creating a time object at start and end of the download function
-
+    # For creating a time object at start and end of the download function
     def createTime(self):
         _time = dt.datetime.now()
 
         time_string = _time.strftime(self.TIME_FORMAT)
-        formatted_time = dt.datetime.strptime(time_string, self.TIME_FORMAT)
+        return dt.datetime.strptime(time_string, self.TIME_FORMAT)
 
-        return formatted_time
-
-
-    #downloadVideo function -> the name explains it
-
-    def download_video(self, url, path_for_download = None, progress_func = None):
-
-        print(path_for_download, url)
-        started_on = self.createTime()
-
-        yt_object = tube.YouTube(url=url, on_progress_callback=progress_func)
-
-        video = yt_object.streams.get_highest_resolution()
-        
-
-        video.download(output_path=path_for_download)
-
-        ended_on = self.createTime()
-
-        time_taken = self.timeTaken(started_on, ended_on)
-        speed_was = round(self.networkSpeed(video.filesize, time_taken), 4)
-
-        # print(f" Seconds took: {time_taken}")
-        # print(f" Average Speed: {speed_was}")
-
-
-
-
-
-    #for getting the video data
-
-    def get_all_data(self, url):
+    # For getting the video data
+    def get_data(self, url) -> dict:
         data_dict = {}
 
         video = tube.YouTube(url)
@@ -159,3 +102,19 @@ class VideoFunctions(tube.YouTube):
 
         return data_dict
 
+    def download_video(self, url, path_for_download = None, progress_func = None) -> tuple:
+        started_on = self.createTime()
+        yt_object = tube.YouTube(url=url, on_progress_callback=progress_func)
+
+        video = yt_object.streams.get_highest_resolution()
+        video.download(output_path=path_for_download)
+
+        ended_on = self.createTime()
+        time_taken = self.timeTaken(started_on, ended_on)
+
+        download_speed = round(self.networkSpeed(video.filesize, time_taken), 4)
+        
+        return time_taken, download_speed
+    
+    def get_playlist(self, url):
+        return tube.Playlist(url)

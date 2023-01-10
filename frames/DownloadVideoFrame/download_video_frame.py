@@ -99,7 +99,7 @@ class VideoInfoFrame():
     # Process Video Info
     def show_info(self, url):
         try:
-            data_found = self.youtube.get_all_data(url)
+            data_found = self.youtube.get_data(url)
 
             file_size = f"{str(data_found['size'])} {data_found['size_type']}"
             
