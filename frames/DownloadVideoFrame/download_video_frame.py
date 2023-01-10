@@ -13,7 +13,7 @@ class VideoInfoFrame():
         self.settings_frame.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
         self.settings_frame.grid_columnconfigure(0, weight=0)
         self.settings_frame.grid_forget() 
-            
+
         self.youtube = VideoFunctions()
         self.database = json.get_json(r"database\config.json")
         self.path = self.database['path']
@@ -96,7 +96,6 @@ class VideoInfoFrame():
         self.download_button = ctk.CTkButton(self.download_progress_frame, text="Download Now", width=50, font=font, command=self.download_video_function)
         self.download_button.grid(row=0, column=2, padx=5, pady=5)
 
-
     # Process Video Info
     def show_info(self, url):
         try:
@@ -134,13 +133,9 @@ class VideoInfoFrame():
 
         if percentage==100.0:
             self.download_label.configure(text="Completed!")
-            
-    #============ Attributes/core.functions ============
 
-    #showFrame Function -> To show the frame by unforgetting the grid
-    def showFrame(self):
+    def show_frame(self):
         self.settings_frame.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
 
-    #hideFrame Function -> Ofc, the vise versa of showFrame function
-    def hideFrame(self):
+    def hide_frame(self):
         self.settings_frame.grid_forget()

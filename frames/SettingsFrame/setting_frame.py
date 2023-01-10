@@ -77,18 +77,6 @@ class SettingsFrame:
         self.appearance_theme_optionemenu.grid(row=1, column=3, padx=20, pady=(10, 10))
         self.appearance_theme_optionemenu.set(self.theme.title())
 
-    #============ Attributes/core.functions ============
-
-    #showFrame Function -> To show the frame by unforgetting the grid
-    def showFrame(self):
-        self.settings_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
-
-
-    #hideFrame Function -> Ofc, the vise versa of showFrame function
-    def hideFrame(self):
-        self.settings_frame.grid_forget()
-
-
     #Set path Function -> Select a path for downloading the video
     def setPath(self):
 
@@ -120,5 +108,8 @@ class SettingsFrame:
         ctk.set_default_color_theme(self.theme.lower())
         messagebox.showinfo("Restart", "Please restart the app to apply the changes.")
 
+    def show_frame(self):
+        self.settings_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
 
-
+    def hide_frame(self):
+        self.settings_frame.grid_forget()

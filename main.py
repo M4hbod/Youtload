@@ -74,16 +74,16 @@ class MainApp:
     def toggleFrame(self, what_to_show: str):
 
         if what_to_show == "settings":
-            self.video_info_frame.hideFrame()
-            self.setting_frame.showFrame()
+            self.video_info_frame.hide_frame()
+            self.setting_frame.show_frame()
 
         elif what_to_show == "downloads":
-            self.video_info_frame.showFrame()
-            self.setting_frame.hideFrame()
+            self.video_info_frame.show_frame()
+            self.setting_frame.hide_frame()
             
         elif what_to_show == "addurl":
-            self.video_info_frame.hideFrame()
-            self.setting_frame.hideFrame()
+            self.video_info_frame.hide_frame()
+            self.setting_frame.hide_frame()
 
 
 
