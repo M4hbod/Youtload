@@ -20,7 +20,7 @@ class VideoInfoFrame():
         if self.path == "":
             self.path = rf"{directory.get_current_directory()}\Download"
             
-        self.search_data_function = lambda: self.youtube.thread_function(self.show_info, (self.url_entry.get(), ))
+        self.search_data = lambda: self.youtube.thread_function(self.show_info, (self.url_entry.get(), ))
         self.download_video_function = lambda: self.youtube.thread_function(self.youtube.download_video, (self.url_entry.get(), self.path, self.progress_function))
         
         # ==== Video Url Frame ====
@@ -33,7 +33,7 @@ class VideoInfoFrame():
         self.url_entry.grid(row=0, column=0, padx=5, pady=5)
         
         # Search Button
-        self.search_video_button = ctk.CTkButton(self.video_url_frame, text="Search", width=50, font=font, command=self.search_data_function)
+        self.search_video_button = ctk.CTkButton(self.video_url_frame, text="Search", width=50, font=font, command=self.search_data)
         self.search_video_button.grid(row=0, column=1, padx=5, pady=5)
         
         # ==== Thumbnail Frame ==== 
