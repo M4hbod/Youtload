@@ -9,10 +9,10 @@ class VideoInfoFrame():
     def __init__(self, master = None, font = ('Segoe UI Black', 10)):
         
         # Settings Frame
-        self.sex_frames = ctk.CTkFrame(master)
-        self.sex_frames.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
-        self.sex_frames.grid_columnconfigure(0, weight=0)
-        self.sex_frames.grid_forget() 
+        self.settings_frame = ctk.CTkFrame(master)
+        self.settings_frame.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
+        self.settings_frame.grid_columnconfigure(0, weight=0)
+        self.settings_frame.grid_forget() 
             
         self.youtube = VideoFunctions()
         self.database = json.get_json(r"database\config.json")
@@ -24,11 +24,11 @@ class VideoInfoFrame():
         self.download_video_function = lambda: self.youtube.thread_function(self.youtube.download_video, (self.url_entry.get(), self.path, self.progress_function))
         
         # ==== Video Url Frame ====
-        self.video_url_frame = ctk.CTkFrame(self.sex_frames)
+        self.video_url_frame = ctk.CTkFrame(self.settings_frame)
         self.video_url_frame.grid(row=0, padx=20, pady=20)
         
         # Search Bar
-        self.entry_value = ctk.StringVar(self.sex_frames)
+        self.entry_value = ctk.StringVar(self.settings_frame)
         self.url_entry = ctk.CTkEntry(self.video_url_frame, width=535, placeholder_text="Video Url...", textvariable = self.entry_value, font=font)
         self.url_entry.grid(row=0, column=0, padx=5, pady=5)
         
@@ -37,7 +37,7 @@ class VideoInfoFrame():
         self.search_video_button.grid(row=0, column=1, padx=5, pady=5)
         
         # ==== Thumbnail Frame ==== 
-        self.thumbnail_frame = ctk.CTkFrame(self.sex_frames)
+        self.thumbnail_frame = ctk.CTkFrame(self.settings_frame)
         self.thumbnail_frame.grid(row=1, sticky='nswe', padx=20, pady=5)
         self.thumbnail_frame.grid_columnconfigure(3, weight=1)
         
@@ -47,7 +47,7 @@ class VideoInfoFrame():
         self.thumbnail_label.pack(pady=10)
 
         # ==== Info Frame ====
-        self.info_frame = ctk.CTkFrame(self.sex_frames)
+        self.info_frame = ctk.CTkFrame(self.settings_frame)
         self.info_frame.grid(row=2, sticky='nswe', padx=20, pady=5)
         self.info_frame.grid_columnconfigure(1, weight=1)
         self.info_frame.grid_rowconfigure(5, weight=2)
@@ -81,7 +81,7 @@ class VideoInfoFrame():
         self.filesize.grid(row=4, column=1, padx=2.5, pady=2.5)
         
         # ==== Download Progress Frame ====
-        self.download_progress_frame = ctk.CTkFrame(self.sex_frames)
+        self.download_progress_frame = ctk.CTkFrame(self.settings_frame)
         self.download_progress_frame.grid(row=3, padx=20, pady=5, sticky='nswe')
         self.info_frame.grid_columnconfigure(1, weight=1)
         self.info_frame.grid_rowconfigure(5, weight=2)
@@ -139,8 +139,8 @@ class VideoInfoFrame():
 
     #showFrame Function -> To show the frame by unforgetting the grid
     def showFrame(self):
-        self.sex_frames.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
+        self.settings_frame.grid(row=0, column=1, padx=7, pady=7, sticky='nswe')
 
     #hideFrame Function -> Ofc, the vise versa of showFrame function
     def hideFrame(self):
-        self.sex_frames.grid_forget()
+        self.settings_frame.grid_forget()
