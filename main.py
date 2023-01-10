@@ -10,6 +10,8 @@ files_and_folders = directory.get_files_and_folders(current_directory)
 
 if not directory.check_if_directory_exists('temp'):
     directory.create_directory('temp')
+else:
+    directory.clear_directory('temp')
 
 class MainApp:
 
