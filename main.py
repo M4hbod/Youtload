@@ -46,9 +46,9 @@ class MainApp:
         
         # ==== Icons ====
         self.icon_size = 30
-        self.addurl_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\addurl.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
-        self.download_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\download.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
-        self.settings_icon = ctk.CTkImage(Image.open(r'Icons\LightModeImages\settings.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
+        self.addurl_icon = ctk.CTkImage(Image.open(r'assets\Icons\LightModeImages\addurl.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
+        self.download_icon = ctk.CTkImage(Image.open(r'assets\Icons\LightModeImages\download.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
+        self.settings_icon = ctk.CTkImage(Image.open(r'assets\Icons\LightModeImages\settings.png').resize((self.icon_size, self.icon_size), Image.NEAREST))
         
         # self.option_frame = AvailableMenuFrames(self.root, self.main_font, self.tab_title)
 

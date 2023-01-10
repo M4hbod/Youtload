@@ -44,7 +44,7 @@ class VideoInfoFrame():
         self.thumbnail_frame.grid_columnconfigure(3, weight=1)
         
         # Video Thumbnail
-        self.thumbnail = ctk.CTkImage(Image.open("Icons/Logo.png"), size=(564, 247))
+        self.thumbnail = ctk.CTkImage(Image.open(r"assets\Images\Logo.png"), size=(564, 247))
         self.thumbnail_label = ctk.CTkLabel(self.thumbnail_frame, text="", image=self.thumbnail, anchor='center')
         self.thumbnail_label.pack(pady=10)
 
