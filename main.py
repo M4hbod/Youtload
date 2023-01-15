@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from PIL import Image
+import pystray
 
 from core.functions import directory
 from frames.DownloadVideoFrame.download_video_frame import VideoInfoFrame
@@ -16,12 +17,15 @@ else:
 class MainApp:
 
     def __init__(self):
+        # ==== Icon ====
+        self.tray_icon = Image.open("tray.ico")
 
         # ==== Main Window ====
         self.root = ctk.CTk()
         self.root.title("Youtload")
         self.root.geometry("800x580")
         self.root.minsize(800, 580)
+        self.root.protocol('WM_DELETE_WINDOW', self.close_to_tray)
 
         # Main Window Configurations
         self.root.grid_columnconfigure(1, weight=1)
@@ -84,7 +88,19 @@ class MainApp:
         elif what_to_show == "addurl":
             self.video_info_frame.hide_frame()
             self.setting_frame.hide_frame()
+            
+    def close_to_tray(self):  
+        self.root.withdraw()
+        menu = (pystray.MenuItem('Show', self.show_app, default=True), pystray.MenuItem('Quit', self.quit_app))
+        self.icon = pystray.Icon("name", self.tray_icon, "title", menu)
+        self.icon.run()
+        
+    def show_app(self):
+        self.icon.stop()
+        self.root.after(0,self.root.deiconify)
 
-
-
+    def quit_app(self):
+        self.icon.stop()
+        self.root.destroy()
+        
 app = MainApp()
