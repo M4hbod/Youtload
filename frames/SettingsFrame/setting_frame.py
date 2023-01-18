@@ -46,7 +46,6 @@ class SettingsFrame:
         # Path Entry -> path for downloading videos
         self.path_entry = ctk.CTkEntry(self.path_frame, font=font, width=470)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
-        self.path_entry.insert(0, self.video_download_path)
         
         # Browse Button -> for choosing a path
         self.path_button = ctk.CTkButton(self.path_frame, text="Browse", font=font, width=60, command=self.setPath)
@@ -64,7 +63,6 @@ class SettingsFrame:
         # Appearance Mode OptionMenu -> Light, Dark, System
         self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"], command=self.change_appearance_mode_event)
         self.appearance_mode_optionemenu.grid(row=1, column=1, padx=5, pady=(10, 10))
-        self.appearance_mode_optionemenu.set(self.mode)
         
         # Theme Label
         self.appearance_theme_label = ctk.CTkLabel(self.appearance_frame, text="Theme:", font=font, width=50)
@@ -74,8 +72,23 @@ class SettingsFrame:
         self.appearance_theme_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Blue", "Green", "Dark-Blue"],
                                                                        command=self.change_appearance_theme_event)
         self.appearance_theme_optionemenu.grid(row=1, column=3, padx=10, pady=(10, 10))
+        
+        # ======== Functionality ========
+        self.functionality_frame = ctk.CTkFrame(self.settings_frame)
+        self.functionality_frame.grid(row=2, sticky='nswe', padx=20, pady=5)
+        
+        self.close_to_tray_checkbox = ctk.CTkCheckBox(self.functionality_frame, text="Close to tray", font=font, width=50, command=self.set_close_to_tray)
+        self.close_to_tray_checkbox.grid(row=2, column=0, padx=(10, 0), pady=(10, 10))
+        
+        
+        # ======== Default ========
+        self.path_entry.insert(0, self.video_download_path)
+        self.appearance_mode_optionemenu.set(self.mode)
         self.appearance_theme_optionemenu.set(self.theme.title())
-
+        
+        if self.database['tray'] == True:
+            self.close_to_tray_checkbox.select()
+        
     #Set path Function -> Select a path for downloading the video
     def setPath(self):
 
@@ -106,6 +119,12 @@ class SettingsFrame:
         json.set_json(r"database\config.json", "theme", self.theme.lower())
         ctk.set_default_color_theme(self.theme.lower())
         messagebox.showinfo("Restart", "Please restart the app to apply the changes.")
+        
+    def set_close_to_tray(self):
+        if self.close_to_tray_checkbox.get() == 1:
+            json.set_json(r"database\config.json", "tray", True)
+        else:
+            json.set_json(r"database\config.json", "tray", False)
 
     def show_frame(self):
         self.settings_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
