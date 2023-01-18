@@ -18,7 +18,7 @@ class MainApp:
 
     def __init__(self):
         # ==== Icon ====
-        self.tray_icon = Image.open("tray.ico")
+        self.tray_icon = Image.open(r"assets\Icons\tray.ico")
 
         # ==== Main Window ====
         self.root = ctk.CTk()
