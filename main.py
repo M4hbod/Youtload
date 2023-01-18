@@ -2,7 +2,7 @@ import customtkinter as ctk
 from PIL import Image
 import pystray
 
-from core.functions import directory
+from core.functions import directory, json
 from frames.DownloadVideoFrame.download_video_frame import VideoInfoFrame
 from frames.SettingsFrame.setting_frame import SettingsFrame
 
@@ -25,14 +25,13 @@ class MainApp:
         self.root.title("Youtload")
         self.root.geometry("800x580")
         self.root.minsize(800, 580)
-        self.root.protocol('WM_DELETE_WINDOW', self.close_to_tray)
+        self.root.protocol('WM_DELETE_WINDOW', self.close_app)
 
         # Main Window Configurations
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_rowconfigure(0, weight=1)
         self.text_font = ('Segoe UI Black', 11)
         self.tab_title = ('Segoe UI Black', 15)
-
 
         # ==== Options Frame ====
         self.menu_frame = ctk.CTkFrame(self.root, width=150)
@@ -47,8 +46,8 @@ class MainApp:
         self.content.grid_forget()
         
         # ==== Tab Frames ====
-        self.video_info_frame = VideoInfoFrame()
-        self.setting_frame = SettingsFrame()
+        self.video_info_frame = VideoInfoFrame(self.root)
+        self.setting_frame = SettingsFrame(self.root)
         
         # ==== Icons ====
         self.icon_size = 30
@@ -89,7 +88,11 @@ class MainApp:
             self.video_info_frame.hide_frame()
             self.setting_frame.hide_frame()
             
-    def close_to_tray(self):  
+    def close_app(self):
+        self.database = json.get_json(r"database\config.json")
+        if self.database["tray"] == False:
+            return self.root.destroy()
+        
         self.root.withdraw()
         menu = (pystray.MenuItem('Show', self.show_app, default=True), pystray.MenuItem('Quit', self.quit_app))
         self.icon = pystray.Icon("name", self.tray_icon, "title", menu)
