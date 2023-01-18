@@ -95,7 +95,7 @@ class MainApp:
         
         self.root.withdraw()
         menu = (pystray.MenuItem('Show', self.show_app, default=True), pystray.MenuItem('Quit', self.quit_app))
-        self.icon = pystray.Icon("name", self.tray_icon, "title", menu)
+        self.icon = pystray.Icon("name", self.tray_icon, "Youtload", menu)
         self.icon.run()
         
     def show_app(self):
