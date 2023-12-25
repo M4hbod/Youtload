@@ -3,33 +3,34 @@ import customtkinter as ctk
 from tkinter import messagebox
 
 from core.functions import directory
+
+
 class SettingsFrame:
-
-
-    #============ Initialization ============
-    def __init__(self, master = None, font = ('Segoe UI Black', 10)):
-
+    # ============ Initialization ============
+    def __init__(self, master=None, font=("Segoe UI Black", 10)):
         # Settings Frame
         self.settings_frame = ctk.CTkFrame(master)
-        self.settings_frame.grid(row=0, column=0, padx=7, pady=7, sticky='nswe')
+        self.settings_frame.grid(row=0, column=0, padx=7, pady=7, sticky="nswe")
         self.settings_frame.grid_columnconfigure(0, weight=0)
-        self.settings_frame.grid_forget() 
+        self.settings_frame.grid_forget()
 
         # Read Json File
         self.database = json.get_json(r"database\config.json")
 
         # Define Vars
-        self.video_download_path = self.database['path']
-        self.mode = self.database['mode']
-        self.theme = self.database['theme']
-        
+        self.video_download_path = self.database["path"]
+        self.mode = self.database["mode"]
+        self.theme = self.database["theme"]
+
         if self.video_download_path == "":
-            self.video_download_path = f"{directory.get_current_directory()}\Download".replace("\\", "/")
+            self.video_download_path = (
+                f"{directory.get_current_directory()}\Download".replace("\\", "/")
+            )
         if self.mode == "":
             self.mode = "Dark"
         if self.theme == "":
             self.theme = "Blue"
-        
+
         # Set Themes
         ctk.set_appearance_mode(self.mode)
         ctk.set_default_color_theme(self.theme.lower())
@@ -37,74 +38,92 @@ class SettingsFrame:
         # ======== PATH ========
         # Path Frame
         self.path_frame = ctk.CTkFrame(self.settings_frame)
-        self.path_frame.grid(row=0, sticky='nswe', padx=20, pady=(20,5))
+        self.path_frame.grid(row=0, sticky="nswe", padx=20, pady=(20, 5))
 
         # Path Label
-        self.path_label = ctk.CTkLabel(self.path_frame, text="Path: ", font=font, width=50)
+        self.path_label = ctk.CTkLabel(
+            self.path_frame, text="Path: ", font=font, width=50
+        )
         self.path_label.grid(row=0, column=0, padx=(10, 0))
 
         # Path Entry -> path for downloading videos
         self.path_entry = ctk.CTkEntry(self.path_frame, font=font, width=470)
         self.path_entry.grid(row=0, column=1, padx=5, pady=5)
-        
+
         # Browse Button -> for choosing a path
-        self.path_button = ctk.CTkButton(self.path_frame, text="Browse", font=font, width=60, command=self.setPath)
+        self.path_button = ctk.CTkButton(
+            self.path_frame, text="Browse", font=font, width=60, command=self.setPath
+        )
         self.path_button.grid(row=0, column=2, padx=5, pady=5)
 
         # ======== APPEARANCE ========
         # Appearance Frame
         self.appearance_frame = ctk.CTkFrame(self.settings_frame)
-        self.appearance_frame.grid(row=1, sticky='nswe', padx=20, pady=5)
-        
+        self.appearance_frame.grid(row=1, sticky="nswe", padx=20, pady=5)
+
         # Appearance Mode Label
-        self.appearance_mode_label = ctk.CTkLabel(self.appearance_frame, text="Mode:", font=font, width=50)
+        self.appearance_mode_label = ctk.CTkLabel(
+            self.appearance_frame, text="Mode:", font=font, width=50
+        )
         self.appearance_mode_label.grid(row=1, column=0, padx=(10, 0), pady=(10, 10))
-        
+
         # Appearance Mode OptionMenu -> Light, Dark, System
-        self.appearance_mode_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Light", "Dark", "System"], command=self.change_appearance_mode_event)
+        self.appearance_mode_optionemenu = ctk.CTkOptionMenu(
+            self.appearance_frame,
+            values=["Light", "Dark", "System"],
+            command=self.change_appearance_mode_event,
+        )
         self.appearance_mode_optionemenu.grid(row=1, column=1, padx=5, pady=(10, 10))
-        
+
         # Theme Label
-        self.appearance_theme_label = ctk.CTkLabel(self.appearance_frame, text="Theme:", font=font, width=50)
+        self.appearance_theme_label = ctk.CTkLabel(
+            self.appearance_frame, text="Theme:", font=font, width=50
+        )
         self.appearance_theme_label.grid(row=1, column=2, padx=(196, 0), pady=(10, 10))
-        
+
         # Theme OptionMenu -> Light, Dark, System
-        self.appearance_theme_optionemenu = ctk.CTkOptionMenu(self.appearance_frame, values=["Blue", "Green", "Dark-Blue"],
-                                                                       command=self.change_appearance_theme_event)
+        self.appearance_theme_optionemenu = ctk.CTkOptionMenu(
+            self.appearance_frame,
+            values=["Blue", "Green", "Dark-Blue"],
+            command=self.change_appearance_theme_event,
+        )
         self.appearance_theme_optionemenu.grid(row=1, column=3, padx=10, pady=(10, 10))
-        
+
         # ======== Functionality ========
         self.functionality_frame = ctk.CTkFrame(self.settings_frame)
-        self.functionality_frame.grid(row=2, sticky='nswe', padx=20, pady=5)
-        
-        self.close_to_tray_checkbox = ctk.CTkCheckBox(self.functionality_frame, text="Close to tray", font=font, width=50, command=self.set_close_to_tray)
+        self.functionality_frame.grid(row=2, sticky="nswe", padx=20, pady=5)
+
+        self.close_to_tray_checkbox = ctk.CTkCheckBox(
+            self.functionality_frame,
+            text="Close to tray",
+            font=font,
+            width=50,
+            command=self.set_close_to_tray,
+        )
         self.close_to_tray_checkbox.grid(row=2, column=0, padx=(10, 0), pady=(10, 10))
-        
-        
+
         # ======== Default ========
         self.path_entry.insert(0, self.video_download_path)
         self.appearance_mode_optionemenu.set(self.mode)
         self.appearance_theme_optionemenu.set(self.theme.title())
-        
-        if self.database['tray'] == True:
-            self.close_to_tray_checkbox.select()
-        
-    #Set path Function -> Select a path for downloading the video
-    def setPath(self):
 
+        if self.database["tray"] == True:
+            self.close_to_tray_checkbox.select()
+
+    # Set path Function -> Select a path for downloading the video
+    def setPath(self):
         path = ctk.filedialog.askdirectory()
         if path == "":
             return
-        
+
         self.path_entry.delete(0, ctk.END)
         self.path_entry.insert(0, str(path))
         self.video_download_path = path
         print(f"path: {self.video_download_path}")
 
-
         json_data = json.get_json(r"database\config.json")
-        if 'path' in json_data:
-            del json_data['path']
+        if "path" in json_data:
+            del json_data["path"]
 
             json.set_json(r"database\config.json", "path", path)
 
@@ -113,13 +132,13 @@ class SettingsFrame:
         self.mode = new_appearance_mode
         json.set_json(r"database\config.json", "mode", self.mode)
         ctk.set_appearance_mode(self.mode)
-        
+
     def change_appearance_theme_event(self, new_appearance_theme: str):
         self.theme = new_appearance_theme
         json.set_json(r"database\config.json", "theme", self.theme.lower())
         ctk.set_default_color_theme(self.theme.lower())
         messagebox.showinfo("Restart", "Please restart the app to apply the changes.")
-        
+
     def set_close_to_tray(self):
         if self.close_to_tray_checkbox.get() == 1:
             json.set_json(r"database\config.json", "tray", True)
@@ -127,7 +146,7 @@ class SettingsFrame:
             json.set_json(r"database\config.json", "tray", False)
 
     def show_frame(self):
-        self.settings_frame.grid(row=0, column=1, sticky='nswe', padx=7, pady=7)
+        self.settings_frame.grid(row=0, column=1, sticky="nswe", padx=7, pady=7)
 
     def hide_frame(self):
         self.settings_frame.grid_forget()
